@@ -1,0 +1,37 @@
+{
+  "address": "四川省成都市武侯区鹭岛路29号鹭岛国际社区三期",
+  "listfile": {
+    "attachment": [
+      {
+        "suffix": "image/jpg",
+        "content": "http://10.29.114.5:11182/fusion/image/v1/fusion/storage/a3YtZnVzaW9uLzRkMWE2NWE2MjA0MDAwMDAwMjAwMDIyMGEzNGJfMTY5OTU5NzU5Mi1kNzE2ZDU3OC0xMWYzLTRhNjYtYjNmNC1kN2FmNDQ0MGUyM2Y=",
+        "fileType": "url"
+      }
+    ]
+  },
+  "subjects": [
+    {
+      "rect": {
+        "w": 76,
+        "h": 69,
+        "x": 851,
+        "y": 213
+      }
+    }
+  ],
+  "dept": "红牌楼街道",
+  "source": "已通过",
+  "questiontitle": "车辆违停",
+  "classification": "车辆违停",
+  "cache_id": "be03444305b67ddbc0ea1723f14b8914",
+  "lingdaopishi": "",
+  "__did_event": true,
+  "urgency": "已审核",
+  "__id": 4046733,
+  "_step": false,
+  "state": "处置中",
+  "flowNo": "2024170538608819",
+  "event": "AI视频发现",
+  "desc": "武侯区红牌楼街道发生车辆违停事件请相关部门即时查看处理",
+  "createDate": "2024-01-16 06:20:21"
+}
