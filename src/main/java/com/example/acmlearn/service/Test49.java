@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * 49. 字母异位词分组
+ * 49. 字母异位词分组 第一遍
  */
 public class Test49 {
     public List<List<String>> groupAnagrams(String[] strs) {
