@@ -23,7 +23,6 @@ public class Test429_02 {
             children = _children;
         }
     };
-
     public List<List<Integer>> levelOrder(Node root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null){
