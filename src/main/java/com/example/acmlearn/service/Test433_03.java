@@ -26,21 +26,20 @@ public class Test433_03 {
 
     void dfs (String S, String E) {
         if (S == E) return ;
+        int step = map.getOrDefault(S,0);
         char[] cs = S.toCharArray();
         for (int i = 0 ; i < S.length(); i++) {
             for (char letter : letters) {
                 if (letter == cs[i]) continue;
                 char[] clone = cs.clone();
                 clone[i] = letter;
-                String tmp = clone.toString();
+                String tmp = String.valueOf(clone);
                 if (set.contains(tmp) && !map.containsKey(tmp)) {
-                    int step = map.getOrDefault(S,0);
                     map.put(tmp, step + 1);
                     dfs(tmp,E);
                 }
             }
         }
-        return;
     }
 
     public static void main(String[] args) {
