@@ -14,53 +14,51 @@ import java.util.List;
  * 3、不处于其他皇后的斜线上
  */
 public class Test51_02 {
-    List<List<Integer>> middle = new ArrayList<>();
-
+    List<List<String>> res = new ArrayList<>();
+    List<Integer> list = new ArrayList<>();
+    List<Integer> lowList = new ArrayList<>();
+    List<Integer> upList = new ArrayList<>();
+    int n;
     public List<List<String>> solveNQueens(int n) {
-        List<List<String>> res = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
-        List<Integer> lowList = new ArrayList<>();
-        List<Integer> upList = new ArrayList<>();
-        dfs(list, n, 0, lowList, upList);
+        this.n = n;
+        dfs(0);
         //添加的时候是从下到上的，输出要求从上到下，所以先倒序
-        Collections.reverse(middle);
-        for (List<Integer> indexs : middle) {
-            List<String> row = new ArrayList<>();
-            for (int index : indexs) {
-                StringBuilder target = new StringBuilder();
-                for (int i = 0; i < n; i++) {
-                    if (i == index) {
-                        target.append("Q");
-                    } else {
-                        target.append(".");
-                    }
-                }
-                row.add(target.toString());
-            }
-            res.add(row);
-        }
+        Collections.reverse(res);
         return res;
     }
 
-    private void dfs(List<Integer> list, int n, int y, List<Integer> lowList, List<Integer> upList) {
+    private void dfs(int y) {
         if (list.size() == n) {
-            middle.add(new ArrayList<>(list));
+            res.add(convert2List(list));
             return;
         }
         for (int x = 0; x < n; x++) {
-            if (list.contains(x)) continue;
-            if(lowList.contains(x-y)) continue;
-            if(upList.contains(x+y)) continue;
-            lowList.add(x-y);
-            upList.add(x+y);
-            list.add(x);
-            y++;
-            dfs(list, n, y, lowList, upList);
-            y--;
-            lowList.remove(lowList.size()-1);
-            upList.remove(upList.size()-1);
-            list.remove(list.size()-1);
+            if(!list.contains(x) && !lowList.contains(x-y) && !upList.contains(x+y)) {
+                lowList.add(x - y);
+                upList.add(x + y);
+                list.add(x);
+                dfs(y + 1);
+                lowList.remove(lowList.size() - 1);
+                upList.remove(upList.size() - 1);
+                list.remove(list.size() - 1);
+            }
         }
+    }
+
+    private List<String> convert2List(List<Integer> list) {
+        List<String> stringList = new ArrayList<>();
+        for (int index : list) {
+            StringBuilder target = new StringBuilder();
+            for (int i = 0; i < list.size(); i++) {
+                if (i == index) {
+                    target.append("Q");
+                } else {
+                    target.append(".");
+                }
+            }
+            stringList.add(target.toString());
+        }
+        return stringList;
     }
 
     //检查同一斜线是否有皇后，有则返回false，没有就将当前位置的斜线位置添加到map中
