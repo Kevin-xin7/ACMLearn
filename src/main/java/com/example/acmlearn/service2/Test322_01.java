@@ -7,52 +7,34 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * 322. 零钱兑换
+ * 322. 零钱兑换——第一遍 记忆化搜索
  */
 public class Test322_01 {
-    int res = 0;
+     int[] memo;
     public int coinChange(int[] coins, int amount) {
         if (amount == 0) return 0;
-        //贪心算法DFS
-        //将硬币降序排序
-        Integer[] coinObjects = IntStream.of(coins).boxed().toArray(Integer[]::new);
-        // 使用 Collections.reverseOrder() 创建一个降序比较器
-        Arrays.sort(coinObjects, Collections.reverseOrder());
-        // 再次转换回 int 数组
-        int[] sortedCoins = Arrays.stream(coinObjects)
-                .mapToInt(Integer::intValue)
-                .toArray();
-        dfs(sortedCoins, amount, 0);
+        memo = new int[amount + 1];
+        dp(coins, amount);
         //如果最后没减到0，则返回-1
-        return res == 0 ? -1 : res;
+        return memo[amount] == 0 ? -1 : memo[amount];
     }
 
-    private void dfs(int[] coins, int amount, int count) {
-        if (amount < 0) return;
-        //已经找到最优解了
-        if (res != 0) return;
+    private int dp(int[] coins, int amount) {
+        //base case termination
+        if (amount < 0) return -1;
         if (amount == 0) {
-            res = count;
-            return;
+            return 0;
         }
+        if (memo[amount] != 0) return memo[amount];
+        int res = Integer.MAX_VALUE;
         for (int coin : coins) {
-            if (amount - coin >= 0) {
-                dfs(coins, amount - coin, count + 1);
-            }
+            int count = dp(coins, amount - coin);
+            if (count < 0) continue;
+            res = Math.min(res,memo[amount - coin] + 1);
         }
+        memo[amount] =  res == Integer.MAX_VALUE ? -1 : res;
+        return memo[amount];
     }
-
-//    private int dfs2(int[] coins) {
-//        if (amount == 0) return 0;
-//        for (int coin : coins) {
-//            if (amount - coin >= 0) {
-//                int n = amount / coin;
-//                amount -= n * coin;
-//                count += n;
-//            }
-//        }
-//        return amount == 0 ? count : -1;
-//    }
 
     public static void main(String[] args) {
         Test322_01 test322_01 = new Test322_01();
