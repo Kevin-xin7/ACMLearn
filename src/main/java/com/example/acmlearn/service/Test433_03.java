@@ -44,9 +44,11 @@ public class Test433_03 {
 
     public static void main(String[] args) {
         String startGene = "AACCGGTT";
-        String endGene= "AACCGGTA";
-        String[] bank = new String[1];
+        String endGene=    "AACCGCTA";
+        String[] bank = new String[3];
         bank[0] = "AACCGGTA";
+        bank[1] = "AACCGCTA";
+        bank[2] = "AAACGGTA";
         Test433_03 test433_03 = new Test433_03();
         int res = test433_03.minMutation(startGene, endGene, bank);
         System.out.println(res);
