@@ -45,6 +45,6 @@ public class Test169_04 {
         nums[0] = 3;
         nums[1] = 2;
         nums[2] = 3;
-        solution.majorityElement(nums);
+        System.out.println(solution.majorityElement(nums));
     }
 }

@@ -22,8 +22,9 @@ public class Test322_02 {
     }
 
     public static void main(String[] args) {
-        Test322_02 test322_01 = new Test322_02();
-        System.out.println(test322_01.coinChange
+        Test322_02 test322_02 = new Test322_02();
+        System.out.println("test");
+        System.out.println(test322_02.coinChange
                 (new int[]{186,419,83,408}, 6249));
     }
 }
